@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Forkel CustomShipping
+ *
+ * @category    Forkel
+ * @package     Forkel_CustomShipping
+ * @copyright   Copyright (c) 2017 Tobias Forkel (http://www.tobiasforkel.de)
+ * @license     http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <forkel_customshipping>
+                <active>0</active>
+                <availability>both</availability>
+                <name>Custom Shipping</name>
+                <title>Custom Shipping</title>
+                <price>0.00</price>
+                <cost>0.00</cost>
+                <sallowspecific>0</sallowspecific>
+                <model>Forkel\CustomShipping\Model\Carrier\Custom</model>
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+            </forkel_customshipping>
+        </carriers>
+    </default>
+</config>

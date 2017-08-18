@@ -1,0 +1,28 @@
+{
+  "name": "tobias-forkel/magento2-customshipping",
+  "description": "This Magento 2 module allows you to provide a custom shipping method in backend only, frontend only or both.",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Tobias Forkel",
+      "email": "tobias.forkel@gmx.com",
+      "homepage": "http://www.tobiasforkel.de"
+    }
+  ],
+  "license": [
+    "OSL-3.0"
+  ],
+  "require": {
+    "php": "~5.5.0|~5.6.0|~7.0.0",
+    "magento/framework": "^100"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Forkel\\CustomShipping\\": ""
+    }
+  }
+}
