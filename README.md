@@ -3,9 +3,9 @@ This Magento 2 module allows you to provide a custom shipping method in backend 
 
 ![Magento2 CustomShipping - Backend - Configuration](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.0.0/screenshots/github/backend/config.gif)
 
-![Magento2 CustomShipping - Backend - Order](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.0.0/screenshots/github/backend/order.jpg)
+![Magento2 CustomShipping - Backend - Order](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.0.0/screenshots/github/backend/order.gif)
 
-![Magento2 CustomShipping - Frontend - Order](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.0.0/screenshots/github/frontend/cart.jpg)
+![Magento2 CustomShipping - Frontend - Order](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.0.0/screenshots/github/frontend/cart.gif)
 
 ## Installation (Composer)
 
