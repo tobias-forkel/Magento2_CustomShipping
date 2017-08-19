@@ -10,6 +10,13 @@
 
 namespace Forkel\CustomShipping\Model\Adminhtml\System\Config\Source;
 
+/**
+ * @category   Forkel
+ * @package    Forkel_CustomShipping
+ * @author     tobias.forkel@gmx.com
+ * @website    http://www.tobiasforkel.de
+ */
+
 class Availability implements \Magento\Framework\Option\ArrayInterface
 {
     /**

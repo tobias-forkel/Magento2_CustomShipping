@@ -1,7 +1,7 @@
 # Magento2 CustomShipping
 This Magento 2 module allows you to provide a custom shipping method in backend only, frontend only or both. In the following screenshots you can see an example `Free - August Special` for `$0.00` in the backend and frontend.
 
-![Magento2 CustomShipping - Backend - Configuration](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.0.0/screenshots/github/backend/config.jpg)
+![Magento2 CustomShipping - Backend - Configuration](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.0.0/screenshots/github/backend/config.gif)
 
 ![Magento2 CustomShipping - Backend - Order](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.0.0/screenshots/github/backend/order.jpg)
 
@@ -17,7 +17,7 @@ This Magento 2 module allows you to provide a custom shipping method in backend 
 Loading composer repositories with package information
 Updating dependencies (including require-dev)              
 Package operations: 1 install, 0 updates, 0 removals
-  - Installing tobias-forkel/magento2-customshipping (1.0.0): Downloading (100%)         
+  - Installing tobias-forkel/magento2-customshipping (1.0.1): Downloading (100%)         
 Writing lock file
 Generating autoload files
 ```
@@ -34,6 +34,7 @@ php bin/magento setup:upgrade
 
 ## Features
 * The option `Backend`, `Frontend` or `Backend / Frontend` allows you hide or display the custom shipping method in frontend or backend.
+* The option `Customer` allows you to display the custom shipping method for logged in customers only.
 * Customizable `Method Name` and `Method Title`.
 * Customizable `Price`. Default is `0.00`.
 
@@ -53,6 +54,10 @@ If you have any issues with this extension, open an issue on [Github](https://gi
 Follow me on [GitHub](https://github.com/tobias-forkel) and [Twitter](https://twitter.com/tobiasforkel).
 
 ## History
+===== 1.0.1 =====
+* Code improvements in Model\Carrier\Custom
+* Added new option `Customer` that allows you to display the custom shipping method for logged in customers only.
+
 ===== 1.0.0 =====
 * Stable version of this module
 

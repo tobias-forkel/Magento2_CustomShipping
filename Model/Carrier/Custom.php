@@ -10,18 +10,8 @@
 
 namespace Forkel\CustomShipping\Model\Carrier;
 
-use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Framework\DataObject;
-use Magento\Shipping\Model\Carrier\AbstractCarrier;
-use Magento\Shipping\Model\Carrier\CarrierInterface;
-use Magento\Shipping\Model\Config;
-use Magento\Shipping\Model\Rate\ResultFactory;
-use Magento\Store\Model\ScopeInterface;
-use Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory;
-use Magento\Quote\Model\Quote\Address\RateResult\Method;
-use Magento\Quote\Model\Quote\Address\RateResult\MethodFactory;
 use Magento\Quote\Model\Quote\Address\RateRequest;
-use Psr\Log\LoggerInterface;
+use Magento\Shipping\Model\Rate\Result;
 
 /**
  * @category   Forkel
@@ -30,7 +20,8 @@ use Psr\Log\LoggerInterface;
  * @website    http://www.tobiasforkel.de
  */
 
-class Custom extends AbstractCarrier implements CarrierInterface
+class Custom extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
+    \Magento\Shipping\Model\Carrier\CarrierInterface
 {
     /**
      * Carrier identifier
@@ -57,41 +48,60 @@ class Custom extends AbstractCarrier implements CarrierInterface
     protected $_rateMethodFactory;
 
     /**
-     * @param ScopeConfigInterface $scopeConfig
-     * @param ErrorFactory $rateErrorFactory
-     * @param LoggerInterface $logger
-     * @param ResultFactory $rateResultFactory
-     * @param MethodFactory $rateMethodFactory
+     * @var Session
+     */
+    protected $_session;
+
+    /**
+     * @var State
+     */
+    protected $_appState;
+
+    /**
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     * @param \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory $rateErrorFactory
+     * @param \Psr\Log\LoggerInterface $logger
+     * @param \Magento\Shipping\Model\Rate\ResultFactory $rateResultFactory
+     * @param \Magento\Quote\Model\Quote\Address\RateResult\MethodFactory $rateMethodFactory
+     * @param \Magento\Customer\Model\Session $session
+     * @param \Magento\Framework\App\State $appState
      * @param array $data
      */
     public function __construct(
-        ScopeConfigInterface $scopeConfig,
-        ErrorFactory $rateErrorFactory,
-        LoggerInterface $logger,
-        ResultFactory $rateResultFactory,
-        MethodFactory $rateMethodFactory,
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory $rateErrorFactory,
+        \Psr\Log\LoggerInterface $logger,
+        \Magento\Shipping\Model\Rate\ResultFactory $rateResultFactory,
+        \Magento\Quote\Model\Quote\Address\RateResult\MethodFactory $rateMethodFactory,
+        \Magento\Customer\Model\Session $session,
+        \Magento\Framework\App\State $appState,
         array $data = []
     ) {
         $this->_rateResultFactory = $rateResultFactory;
         $this->_rateMethodFactory = $rateMethodFactory;
+        $this->_session = $session;
+        $this->_appState = $appState;
         parent::__construct($scopeConfig, $rateErrorFactory, $logger, $data);
     }
 
     /**
-     * Check if current user logged as admin
+     * Check if current user logged in as admin
      *
      * @return bool
      */
     protected function isAdmin()
     {
+        return 'adminhtml' === $this->_session->getAreaCode();
+    }
 
-        /** @var \Magento\Framework\ObjectManagerInterface $om */
-        $om = \Magento\Framework\App\ObjectManager::getInstance();
+    /**
+     * Check if current user logged in
+     *
+     * @return bool
+     */
+    protected function isCustomerLoggedIn() {
 
-        /** @var \Magento\Framework\App\State $state */
-        $state =  $om->get('Magento\Framework\App\State');
-
-        return 'adminhtml' === $state->getAreaCode();
+        return $this->_session->isLoggedIn();
     }
 
     /**
@@ -112,6 +122,13 @@ class Custom extends AbstractCarrier implements CarrierInterface
         }
 
         /**
+         * Check if shipping method should be available for logged in users only
+         */
+        if ($this->getConfigFlag('customer') && !$this->isCustomerLoggedIn()) {
+            return false;
+        }
+
+        /**
          * Check if shipping method should be visible in backend, frontend or both
          */
         if ($this->getConfigData('availability') == 'backend' && !$this->isAdmin() || $this->getConfigData('availability') == 'frontend' && $this->isAdmin()) {
@@ -121,19 +138,19 @@ class Custom extends AbstractCarrier implements CarrierInterface
         /** @var \Magento\Shipping\Model\Rate\Result $result */
         $result = $this->_rateResultFactory->create();
 
-        $rate = $this->_rateMethodFactory->create();
+        /** @var \Magento\Quote\Model\Quote\Address\RateResult\Method $method */
+        $method = $this->_rateMethodFactory->create();
 
-        $price = $rate->setPrice($this->getConfigData('price'));
+        $method->setCarrier($this->getCarrierCode());
+        $method->setCarrierTitle($this->getConfigData('title'));
 
-        $rate->setCarrier($this->getCarrierCode());
-        $rate->setCarrierTitle($this->getConfigData('title'));
+        $method->setMethod($this->getCarrierCode());
+        $method->setMethodTitle($this->getConfigData('name'));
 
-        $rate->setMethod($this->getCarrierCode());
-        $rate->setMethodTitle($this->getConfigData('name'));
+        $method->setPrice($this->getConfigData('price'));
+        $method->setCost($this->getConfigData('cost'));
 
-        $rate->setPrice($price);
-
-        $result->append($rate);
+        $result->append($method);
 
         return $result;
     }
