@@ -1,13 +1,9 @@
 # Magento2 CustomShipping
 This Magento 2 module allows you to provide a custom shipping method in backend only, frontend only or both. In the following screenshots you can see an example `Free - August Special` for `$0.00` in the backend and frontend.
 
-<<<<<<< HEAD
-![Magento2 CustomShipping - Backend - Configuration](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.0.1/screenshots/github/backend/config.gif)
-=======
 ![Magento2 CustomShipping - Intro](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.0.0/screenshots/github/intro.png)
 
-![Magento2 CustomShipping - Backend - Configuration](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.0.0/screenshots/github/backend/config.jpg)
->>>>>>> 4f5735ff6ec28c8504fb8669c3fac961dd34e1d1
+![Magento2 CustomShipping - Backend - Configuration](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.0.1/screenshots/github/backend/config.gif)
 
 ![Magento2 CustomShipping - Backend - Order](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.0.1/screenshots/github/backend/order.gif)
 
