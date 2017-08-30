@@ -16,6 +16,12 @@
                 <active>0</active>
                 <availability>both</availability>
                 <customer>0</customer>
+
+                <scheduler_enabled>0</scheduler_enabled>
+                <frequency>mon,tue,wed,thu,fri,sat,sun</frequency>
+                <date_start></date_start>
+                <date_end></date_end>
+
                 <name>Custom Shipping</name>
                 <title>Custom Shipping</title>
                 <price>0.00</price>

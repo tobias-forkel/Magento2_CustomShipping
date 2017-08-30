@@ -14,52 +14,89 @@
     <system>
         <section id="carriers" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
             <group id="forkel_customshipping" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+
                 <label>Custom Shipping</label>
                 <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="availability" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="availability" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Availability</label>
                     <source_model>Forkel\CustomShipping\Model\Adminhtml\System\Config\Source\Availability</source_model>
-                    <comment>Available in backend, frontend or both.</comment>
+                    <comment>Available in backend, frontend or both. Default: Backend / Frontend.</comment>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
                 </field>
-                <field id="customer" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="customer" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Customer</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Available for logged in customers only.</comment>
+                    <comment>Available for logged in customers only. Default: No.</comment>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
                 </field>
-                <field id="title" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+
+                <field id="scheduler_enabled" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Scheduler</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable custom shipping method for a specific time range only. Default: No.</comment>
+                </field>
+                <field id="frequency" translate="label" type="multiselect" sortOrder="41" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Frequency</label>
+                    <source_model>Forkel\CustomShipping\Model\Adminhtml\System\Config\Source\Weekdays</source_model>
+                    <comment>Select "Wednesday" to display the custom shipping method on Wednesdays only. Default: All weekdays</comment>
+                    <depends>
+                        <field id="scheduler_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="date_start" translate="label" type="text" sortOrder="42" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Start Date</label>
+                    <frontend_model>Forkel\CustomShipping\Block\Adminhtml\System\Config\Field\DatePicker</frontend_model>
+                    <depends>
+                        <field id="scheduler_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="date_end" translate="label" type="text" sortOrder="43" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>End Date</label>
+                    <frontend_model>Forkel\CustomShipping\Block\Adminhtml\System\Config\Field\DatePicker</frontend_model>
+                    <depends>
+                        <field id="scheduler_enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="title" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Method Title</label>
                 </field>
-                <field id="name" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="name" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Method Name</label>
                 </field>
-                <field id="price" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="price" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Shipping Price</label>
                     <validate>validate-number validate-zero-or-greater</validate>
                 </field>
-                <field id="specificerrmsg" translate="label" type="textarea" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="specificerrmsg" translate="label" type="textarea" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Displayed Error Message</label>
                 </field>
-                <field id="sallowspecific" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="sallowspecific" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Ship to Applicable Countries</label>
                     <frontend_class>shipping-applicable-country</frontend_class>
                     <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
                 </field>
-                <field id="specificcountry" translate="label" type="multiselect" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Ship to Specific Countries</label>
                     <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
                     <can_be_empty>1</can_be_empty>
                 </field>
-                <field id="showmethod" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="showmethod" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Show Method if Not Applicable</label>
                     <frontend_class>shipping-skip-hide</frontend_class>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="sort_order" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="sort_order" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Sort Order</label>
                 </field>
+
             </group>
         </section>
     </system>

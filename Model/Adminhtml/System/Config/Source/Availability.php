@@ -28,9 +28,9 @@ class Availability implements \Magento\Framework\Option\ArrayInterface
     {
 
         return [
-            ['value' => 'both', 'label' => 'Backend / Frontend'],
-            ['value' => 'backend', 'label' => 'Backend only'],
-            ['value' => 'frontend', 'label' => 'Frontend only']
+            ['value' => 'both', 'label' => __('Backend / Frontend')],
+            ['value' => 'backend', 'label' => __('Backend only')],
+            ['value' => 'frontend', 'label' => __('Frontend only')]
         ];
     }
 }

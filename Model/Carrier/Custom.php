@@ -12,6 +12,7 @@ namespace Forkel\CustomShipping\Model\Carrier;
 
 use Magento\Quote\Model\Quote\Address\RateRequest;
 use Magento\Shipping\Model\Rate\Result;
+use Forkel\CustomShipping\Helper\Config as Helper;
 
 /**
  * @category   Forkel
@@ -48,14 +49,9 @@ class Custom extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
     protected $_rateMethodFactory;
 
     /**
-     * @var Session
+     * @var \Forkel\CustomShipping\Helper\Config
      */
-    protected $_session;
-
-    /**
-     * @var State
-     */
-    protected $_appState;
+    protected $_helper;
 
     /**
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
@@ -63,8 +59,6 @@ class Custom extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
      * @param \Psr\Log\LoggerInterface $logger
      * @param \Magento\Shipping\Model\Rate\ResultFactory $rateResultFactory
      * @param \Magento\Quote\Model\Quote\Address\RateResult\MethodFactory $rateMethodFactory
-     * @param \Magento\Customer\Model\Session $session
-     * @param \Magento\Framework\App\State $appState
      * @param array $data
      */
     public function __construct(
@@ -73,35 +67,13 @@ class Custom extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
         \Psr\Log\LoggerInterface $logger,
         \Magento\Shipping\Model\Rate\ResultFactory $rateResultFactory,
         \Magento\Quote\Model\Quote\Address\RateResult\MethodFactory $rateMethodFactory,
-        \Magento\Customer\Model\Session $session,
-        \Magento\Framework\App\State $appState,
+        \Forkel\CustomShipping\Helper\Config $helper,
         array $data = []
     ) {
         $this->_rateResultFactory = $rateResultFactory;
         $this->_rateMethodFactory = $rateMethodFactory;
-        $this->_session = $session;
-        $this->_appState = $appState;
+        $this->_helper = $helper;
         parent::__construct($scopeConfig, $rateErrorFactory, $logger, $data);
-    }
-
-    /**
-     * Check if current user logged in as admin
-     *
-     * @return bool
-     */
-    protected function isAdmin()
-    {
-        return 'adminhtml' === $this->_session->getAreaCode();
-    }
-
-    /**
-     * Check if current user logged in
-     *
-     * @return bool
-     */
-    protected function isCustomerLoggedIn() {
-
-        return $this->_session->isLoggedIn();
     }
 
     /**
@@ -114,24 +86,9 @@ class Custom extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
      */
     public function collectRates(RateRequest $request)
     {
-        /**
-         * Check if shipping method is actually enabled
-         */
-        if (!$this->getConfigFlag('active')) {
-            return false;
-        }
 
-        /**
-         * Check if shipping method should be available for logged in users only
-         */
-        if ($this->getConfigFlag('customer') && !$this->isCustomerLoggedIn()) {
-            return false;
-        }
-
-        /**
-         * Check if shipping method should be visible in backend, frontend or both
-         */
-        if ($this->getConfigData('availability') == 'backend' && !$this->isAdmin() || $this->getConfigData('availability') == 'frontend' && $this->isAdmin()) {
+        // Check if custom shipping method is availabie in frontend
+        if (!$this->_helper->isAvailable()) {
             return false;
         }
 
