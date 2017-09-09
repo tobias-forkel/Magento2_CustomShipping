@@ -22,6 +22,9 @@
                 <date_start></date_start>
                 <date_end></date_end>
 
+                <hide_enabled>0</hide_enabled>
+                <hide_carriers></hide_carriers>
+
                 <name>Custom Shipping</name>
                 <title>Custom Shipping</title>
                 <price>0.00</price>

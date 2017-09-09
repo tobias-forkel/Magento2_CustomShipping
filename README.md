@@ -1,30 +1,32 @@
 # Magento2 CustomShipping
-This Magento 2 module allows you to provide a custom shipping method in backend only, frontend only or both. In the following screenshots you can see an example `Free - December Special` for `$0.00`.
+This Magento 2 module allows you to provide a custom shipping method in backend only, frontend only or both. With the `Scheduler` feature you can manage the availability automatically. In the following screenshots you can see an example `Free - December Special` for `$0.00`.
 
-![Magento2 CustomShipping - Intro](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.1.0/screenshots/github/intro.gif)
+![Magento2 CustomShipping - Intro](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.2.0/screenshots/github/intro.gif)
 
-![Magento2 CustomShipping - Backend - Frontend](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.1.0/screenshots/github/frontend/cart.gif)
+![Magento2 CustomShipping - Backend - Frontend](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.2.0/screenshots/github/frontend/cart.gif)
 
-![Magento2 CustomShipping - Backend - Configuration](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.1.0/screenshots/github/backend/config_01.gif)
+![Magento2 CustomShipping - Backend - Configuration](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.2.0/screenshots/github/backend/config_01.gif)
 
-![Magento2 CustomShipping - Backend - Configuration](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.1.0/screenshots/github/backend/config_02.gif)
+![Magento2 CustomShipping - Backend - Configuration](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.2.0/screenshots/github/backend/config_02.gif)
 
-![Magento2 CustomShipping - Backend - Configuration](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.1.0/screenshots/github/backend/config_03.gif)
+![Magento2 CustomShipping - Backend - Configuration](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.2.0/screenshots/github/backend/config_03.gif)
 
-![Magento2 CustomShipping - Backend - Order](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.1.0/screenshots/github/backend/order.gif)
+![Magento2 CustomShipping - Backend - Configuration](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.2.0/screenshots/github/backend/config_04.gif)
+
+![Magento2 CustomShipping - Backend - Order](http://www.tobiasforkel.de/public/magento/forkel_customshipping/2/version/1.2.0/screenshots/github/backend/order.gif)
 
 
 ## Installation (Composer)
 
 1. Add this extension to your repository `composer config repositories.tobias-forkel/magento2-customshipping vcs https://github.com/tobias-forkel/Magento2_CustomShipping.git`
-2. Update your composer.json `composer require "tobias-forkel/magento2-customshipping":"1.1.0"`
+2. Update your composer.json `composer require "tobias-forkel/magento2-customshipping":"1.2.0"`
 
 ```
 ./composer.json has been updated
 Loading composer repositories with package information
 Updating dependencies (including require-dev)              
 Package operations: 1 install, 0 updates, 0 removals
-  - Installing tobias-forkel/magento2-customshipping (1.1.0): Downloading (100%)         
+  - Installing tobias-forkel/magento2-customshipping (1.2.0): Downloading (100%)         
 Writing lock file
 Generating autoload files
 ```
@@ -40,10 +42,11 @@ php bin/magento setup:upgrade
 ```
 
 ## Features
-* Enable and disable it by using the `Start Date` or `End Date` field.
-* `Frequency` allows you to enable the custom shipping method on specific weekdays only.
 * The option `Backend`, `Frontend` or `Backend / Frontend` allows you hide or display the custom shipping method in frontend or backend.
 * The option `Customer` allows you to display the custom shipping method for logged in customers only.
+* With `Scheduler` you can manage the availability automatically by using the `Start Date` or `End Date` field.
+* `Frequency` allows you to enable the custom shipping method on specific weekdays only.
+* With `Hide Other Shipping Methods` you can disable other shipping methods if Custom Shipping is available.
 * Customizable `Method Name` and `Method Title`.
 * Customizable `Price`. Default is `0.00`.
 
@@ -63,6 +66,10 @@ If you have any issues with this extension, open an issue on [Github](https://gi
 Follow me on [GitHub](https://github.com/tobias-forkel) and [Twitter](https://twitter.com/tobiasforkel).
 
 ## History
+===== 1.2.0 =====
+* Added new feature `Hide Other Shipping Methods` that allows you to disable other shipping methods if Custom Shipping is available.
+* Code improvements
+
 ===== 1.1.0 =====
 * Added new feature `Scheduler` that allows you to enable and disable automatically. You can choose between `Start Date` and `End Date`, which you can combine with `Frequency`.
 * Code improvements

@@ -88,7 +88,8 @@ class Custom extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
     {
 
         // Check if custom shipping method is availabie in frontend
-        if (!$this->_helper->isAvailable()) {
+        if (!$this->_helper->isAvailable())
+        {
             return false;
         }
 

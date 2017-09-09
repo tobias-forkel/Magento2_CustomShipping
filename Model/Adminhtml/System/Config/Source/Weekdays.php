@@ -19,11 +19,19 @@ namespace Forkel\CustomShipping\Model\Adminhtml\System\Config\Source;
 
 class Weekdays implements \Magento\Framework\Option\ArrayInterface
 {
+    /**
+     * @var Array
+     */
     protected $_data = [];
 
-    public function setWeekdays()
+    /**
+     * Get weekdays
+     *
+     * @return array
+     */
+    public function getWeekdays()
     {
-        $this->_data = [
+        return $this->_data = [
             'mon' => __('Monday'),
             'tue' => __('Tuesday'),
             'wed' => __('Wednesday'),
@@ -32,16 +40,6 @@ class Weekdays implements \Magento\Framework\Option\ArrayInterface
             'sat' => __('Saturday'),
             'sun' => __('Sunday')
         ];
-    }
-
-    public function getWeekdays()
-    {
-        return $this->_data;
-    }
-
-    public function __construct()
-    {
-        $this->setWeekdays();
     }
 
     /**
