@@ -19,14 +19,14 @@ This Magento 2 module allows you to provide a custom shipping method in backend 
 ## Installation (Composer)
 
 1. Add this extension to your repository `composer config repositories.tobias-forkel/magento2-customshipping vcs https://github.com/tobias-forkel/Magento2_CustomShipping.git`
-2. Update your composer.json `composer require "tobias-forkel/magento2-customshipping":"1.2.0"`
+2. Update your composer.json `composer require "tobias-forkel/magento2-customshipping":"1.2.1"`
 
 ```
 ./composer.json has been updated
 Loading composer repositories with package information
 Updating dependencies (including require-dev)              
 Package operations: 1 install, 0 updates, 0 removals
-  - Installing tobias-forkel/magento2-customshipping (1.2.0): Downloading (100%)         
+  - Installing tobias-forkel/magento2-customshipping (1.2.1): Downloading (100%)         
 Writing lock file
 Generating autoload files
 ```
@@ -66,6 +66,9 @@ If you have any issues with this extension, open an issue on [Github](https://gi
 Follow me on [GitHub](https://github.com/tobias-forkel) and [Twitter](https://twitter.com/tobiasforkel).
 
 ## History
+===== 1.2.1 =====
+* Fix composer.json
+
 ===== 1.2.0 =====
 * Added new feature `Hide Other Shipping Methods` that allows you to disable other shipping methods if Custom Shipping is available.
 * Code improvements
