@@ -29,7 +29,7 @@ class Custom extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
      *
      * @var string
      */
-    protected $_code = 'forkel_customshipping';
+    protected $_code = 'forkelcustomshipping';
 
     /**
      * This carrier has fixed rates calculation
