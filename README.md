@@ -1,3 +1,7 @@
+```
+NOTE: This repository has moved to https://github.com/magenizr/Magenizr_CustomShipping and will be continued there.
+```
+
 # Magento2 CustomShipping
 This Magento 2 module allows you to provide a custom shipping method in backend only, frontend only or both. With the `Scheduler` feature you can manage the availability automatically. In the following screenshots you can see an example `Free - December Special` for `$0.00`.
 
